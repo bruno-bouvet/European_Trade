@@ -1,0 +1,3 @@
+eurotrade_homepage:
+    path:     /
+    defaults: { _controller: EurotradeBundle:Default:index }
