@@ -1,0 +1,22 @@
+EurotradeBundle\Entity\News:
+    type: entity
+    table: null
+    repositoryClass: EurotradeBundle\Repository\NewsRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        content:
+            type: text
+        title:
+            type: string
+            length: 255
+        author:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
