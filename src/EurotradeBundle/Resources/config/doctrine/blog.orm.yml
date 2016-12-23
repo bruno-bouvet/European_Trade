@@ -1,0 +1,27 @@
+EurotradeBundle\Entity\blog:
+    type: entity
+    table: null
+    repositoryClass: EurotradeBundle\Repository\blogRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: datetime
+        title:
+            type: string
+            length: 255
+        author:
+            type: string
+            length: 255
+        content:
+            type: text
+    lifecycleCallbacks: {  }
+
+    oneToMany:
+        documents:
+            targetEntity: EurotradeBundle\Entity\document
+            mappedBy: blog
