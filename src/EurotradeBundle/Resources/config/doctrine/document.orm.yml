@@ -1,0 +1,29 @@
+EurotradeBundle\Entity\document:
+    type: entity
+    table: null
+    repositoryClass: EurotradeBundle\Repository\documentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        format:
+            type: string
+            length: 255
+        file:
+            type: string
+            length: 255
+        url:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
+
+    manyToOne:
+        blog:
+            targetEntity: EurotradeBundle\Entity\blog
+            inversedBy: documents
