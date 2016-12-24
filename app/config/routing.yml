@@ -1,3 +1,11 @@
 eurotrade:
     resource: "@EurotradeBundle/Resources/config/routing.yml"
     prefix:   /
+
+eurotrade_document:
+        resource: "@EurotradeBundle/Resources/config/routing/document.yml"
+        prefix:   /document
+
+eurotrade_blog:
+        resource: "@EurotradeBundle/Resources/config/routing/blog.yml"
+        prefix:   /blog

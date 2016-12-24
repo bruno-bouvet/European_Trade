@@ -1,0 +1,24 @@
+document_index:
+    path:     /
+    defaults: { _controller: "EurotradeBundle:document:index" }
+    methods:  GET
+
+document_show:
+    path:     /{id}/show
+    defaults: { _controller: "EurotradeBundle:document:show" }
+    methods:  GET
+
+document_new:
+    path:     /new
+    defaults: { _controller: "EurotradeBundle:document:new" }
+    methods:  [GET, POST]
+
+document_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "EurotradeBundle:document:edit" }
+    methods:  [GET, POST]
+
+document_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "EurotradeBundle:document:delete" }
+    methods:  DELETE
