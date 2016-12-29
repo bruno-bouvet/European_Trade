@@ -10,4 +10,15 @@ class DefaultController extends Controller
     {
         return $this->render('EurotradeBundle:Default:index.html.twig');
     }
+
+    public function contactAction()
+    {
+        return $this->render('EurotradeBundle:Default:contact.html.twig');
+    }
+
+    public function quisommesAction()
+    {
+        return $this->render('EurotradeBundle:Default:quisommesnous.html.twig');
+    }
+
 }
