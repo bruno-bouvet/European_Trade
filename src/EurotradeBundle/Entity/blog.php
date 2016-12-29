@@ -9,6 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class blog
 {
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
+    /////////////////////////////////////////////////////////
+    ///////////////SUITE Générée automatiquement/////////////
+    ////////////////////////////////////////////////////////
+
 
     /**
      * @var integer

@@ -5,3 +5,11 @@ eurotrade_blog:
 eurotrade_homepage:
     path:     /
     defaults: { _controller: EurotradeBundle:Default:index }
+
+eurotrade_contact:
+    path:     /contact
+    defaults: { _controller: EurotradeBundle:Default:contact }
+
+eurotrade_quisommes:
+    path:     /qui_sommes_nous
+    defaults: { _controller: EurotradeBundle:Default:quisommes }
