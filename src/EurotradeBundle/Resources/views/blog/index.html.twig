@@ -15,25 +15,25 @@
             </tr>
         </thead>
         <tbody>
-        {#{% for blog in blogs %}#}
-            {#<tr>#}
-                {#<td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.id }}</a></td>#}
-                {#<td>{% if blog.date %}{{ blog.date|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{{ blog.title }}</td>#}
-                {#<td>{{ blog.author }}</td>#}
-                {#<td>{{ blog.content }}</td>#}
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('blog_show', { 'id': blog.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('blog_edit', { 'id': blog.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
+        {% for blog in blogs %}
+            <tr>
+                <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.id }}</a></td>
+                <td>{% if blog.date %}{{ blog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ blog.title }}</td>
+                <td>{{ blog.author }}</td>
+                <td>{{ blog.content }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blog_show', { 'id': blog.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blog_edit', { 'id': blog.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 

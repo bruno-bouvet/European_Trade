@@ -11,3 +11,7 @@ eurotrade_contact:
 eurotrade_quisommes:
     path:     /qui_sommes_nous
     defaults: { _controller: EurotradeBundle:Default:quisommes }
+
+eurotrade_blog:
+    path:     /blog
+    defaults: { _controller: EurotradeBundle:blog:index }

@@ -30,39 +30,82 @@ class DefaultController extends Controller
 
     public function contactAction(Request $request)
     {
-        $name = $email = $phone = $message = NULL;
 
-        $form = $this->createFormBuilder()
-            ->add('name', textType::class, array('constraints' => array(new NotBlank(array('message' => 'test'
-            )))))
-            ->add('email', TextType::class,  array('constraints' => array(new Assert\Email(array('checkMX' => true)),
-                                                                          new NotBlank(),)))
-            ->add('phone', TextType::class,  array('constraints' => array(new Assert\Email(array('checkMX' => true)),
-                new NotBlank(),)))
-            ->add('message')
-            ->add('send', SubmitType::class , array('label' => 'OK'))
-            ->getForm();
-
+        $form = $this->createForm('EurotradeBundle\Form\contactType');
         $form->handleRequest($request);
-
-        if ($form->isValid())
+        $table['form'] = $form->createView();
+        $send=false;
+        $table['send'] = $send;
+        if ($form->isSubmitted() && $form->isValid())
         {
-            $name=$form["name"]->getData();
-            $email=$form["email"]->getData();
-            $phone=$form["phone"]->getData();
-            $message=$form["message"]->getData();
-            $this->SendMail($name, $email, $phone, $message);
+            $name = $form->get('name')->getData();
+            $email = $form->get('email')->getData();
+            $message = $form->get('message')->getData();
+            $this->sendMail($name,$email,$message);
+            // permet de savoir si le questionnaire a été envoyé
+            $send=true;
+            $table['send'] = $send;
+            // on efface le questionnaire et on en créé un nouveau pour qu'à l'envoi les champs soient reset
+            unset($form);
+            $form = $this->createForm('EurotradeBundle\Form\contactType', $page);
+            $table['form'] = $form->createView();
+            return $this->render('@Eurotrade/Default/contact.html.twig', $table);
         }
+        return $this->render('@Eurotrade/Default/contact.html.twig', $table);
+
+//         envoi de mail de la page contact
+
+     function sendMail($name, $email, $message)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject($name)
+            ->setFrom($email)
+            ->setTo('bouvet.bruno@gmail.com')
+            ->setBody($message)
+        ;
+        $this->get('mailer')->send($message);
+    }
 
 
 
 
 
-        return $this->render('EurotradeBundle:Default:contact.html.twig', array('form'    => $form->createView(),
-                                                                                'name'    => $name,
-                                                                                'email'   => $email,
-                                                                                'phone'   => $phone,
-                                                                                'message' => $message));
+//        $name = $email = $phone = $message = NULL;
+////        $form->handleRequest($request);
+//
+//        $form = $this->createFormBuilder()
+//            ->add('name', textType::class, array('constraints' => array(new NotBlank(array('message' => 'test'
+//            )))))
+//            ->add('email', TextType::class,  array('constraints' => array(new Assert\Email(array('checkMX' => true)),
+//                                                                          new NotBlank(),)))
+//            ->add('name', textType::class, array('constraints' => array(new NotBlank(array('message' => 'test')))))
+//            ->add('message')
+//            ->add('send', SubmitType::class , array('label' => 'OK'))
+//            ->getForm();
+//
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//
+//            $name=$form["name"]->getData();
+//            $email=$form["email"]->getData();
+//            $phone=$form["phone"]->getData();
+//            $message=$form["message"]->getData();
+//            $this->SendMail($name, $email, $phone, $message);
+//
+//
+////            $teacher->getImage()->preUpload();
+//
+////            $em->persist($form);
+////            $em->flush();
+//        }
+//
+//        return $this->render('EurotradeBundle:Default:contact.html.twig', array('form'    => $form->createView(),
+//                                                                                'name'    => $name,
+//                                                                                'email'   => $email,
+//                                                                                'phone'   => $phone,
+//                                                                                'message' => $message));
 
 
 
