@@ -25,7 +25,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EurotradeBundle:Default:index.html.twig');
+        return $this->render('@Eurotrade/Default/index.html.twig');
     }
 
     public function contactAction(Request $request)
@@ -55,7 +55,7 @@ class DefaultController extends Controller
         }
 
 
-        
+
 
 
         return $this->render('EurotradeBundle:Default:contact.html.twig', array('form'    => $form->createView(),

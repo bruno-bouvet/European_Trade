@@ -6,6 +6,8 @@ eurotrade:
     resource: "@EurotradeBundle/Resources/config/routing.yml"
     prefix:   /
 
+
+
 eurotrade_document:
         resource: "@EurotradeBundle/Resources/config/routing/document.yml"
         prefix:   /document

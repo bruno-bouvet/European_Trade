@@ -1,6 +1,4 @@
-eurotrade_blog:
-    resource: "@EurotradeBundle/Resources/config/routing/blog.yml"
-    prefix:   /blog
+
 
 eurotrade_homepage:
     path:     /
