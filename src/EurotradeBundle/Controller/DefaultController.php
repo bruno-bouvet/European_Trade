@@ -7,7 +7,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use EurotradeBundle\Form\contactType;
 use EurotradeBundle\Entity\Task;
-
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,6 +20,8 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Regex;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class DefaultController extends Controller
 {
     public function indexAction()
@@ -28,168 +29,157 @@ class DefaultController extends Controller
         return $this->render('@Eurotrade/Default/index.html.twig');
     }
 
-    public function contactAction(Request $request)
+    public function contactAction()
     {
-
-        $form = $this->createForm('EurotradeBundle\Form\contactType');
-        $form->handleRequest($request);
-        $table['form'] = $form->createView();
-        $send=false;
-        $table['send'] = $send;
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $name = $form->get('name')->getData();
-            $email = $form->get('email')->getData();
-            $message = $form->get('message')->getData();
-            $this->sendMail($name,$email,$message);
-            // permet de savoir si le questionnaire a été envoyé
-            $send=true;
-            $table['send'] = $send;
-            // on efface le questionnaire et on en créé un nouveau pour qu'à l'envoi les champs soient reset
-            unset($form);
-            $form = $this->createForm('EurotradeBundle\Form\contactType', $page);
-            $table['form'] = $form->createView();
-            return $this->render('@Eurotrade/Default/contact.html.twig', $table);
-        }
-        return $this->render('@Eurotrade/Default/contact.html.twig', $table);
-
-//         envoi de mail de la page contact
-
-     function sendMail($name, $email, $message)
-    {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($name)
-            ->setFrom($email)
-            ->setTo('bouvet.bruno@gmail.com')
-            ->setBody($message)
-        ;
-        $this->get('mailer')->send($message);
+//
+//
+//        $session = $this->get('request')->getSession();
+//        $details = $session->get('details');
+//
+//        $session->set('details', array(
+//            'name' => $name,
+//            'email' => $email,
+//            'phone' => $phone,
+//            'message' => $message
+//        ));
+//
+//
+//        $name = $details['name'];
+//        $email = $_POST['email'];
+//        $phone = $_POST['phone'];
+//        $message = $_POST['message'];
+//
+//        dump($name);die();
+//
+//
+////        $name = $_POST['name']; // required
+////        $email = $_POST['email']; // required
+////        $phone = $_POST['phone']; // required
+////        $message = $_POST['mesage']; // required
+//
+//
+        return $this->render('@Eurotrade/Default/contact.html.twig');
     }
 
-
-
-
-
-//        $name = $email = $phone = $message = NULL;
-////        $form->handleRequest($request);
-//
-//        $form = $this->createFormBuilder()
-//            ->add('name', textType::class, array('constraints' => array(new NotBlank(array('message' => 'test'
-//            )))))
-//            ->add('email', TextType::class,  array('constraints' => array(new Assert\Email(array('checkMX' => true)),
-//                                                                          new NotBlank(),)))
-//            ->add('name', textType::class, array('constraints' => array(new NotBlank(array('message' => 'test')))))
-//            ->add('message')
-//            ->add('send', SubmitType::class , array('label' => 'OK'))
-//            ->getForm();
-//
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-//
-//            $name=$form["name"]->getData();
-//            $email=$form["email"]->getData();
-//            $phone=$form["phone"]->getData();
-//            $message=$form["message"]->getData();
-//            $this->SendMail($name, $email, $phone, $message);
-//
-//
-////            $teacher->getImage()->preUpload();
-//
-////            $em->persist($form);
-////            $em->flush();
-//        }
-//
-//        return $this->render('EurotradeBundle:Default:contact.html.twig', array('form'    => $form->createView(),
-//                                                                                'name'    => $name,
-//                                                                                'email'   => $email,
-//                                                                                'phone'   => $phone,
-//                                                                                'message' => $message));
-
-
-
-
-
-//        ->add('firstname', TextType::class, array('constraints' => array(new NotBlank(array(//'message' => 'contact.error.firstname'
-//    ))
-//    ,new Length(array('min' => 3,
-//            'max' => 10,
-//            //'minMessage' => 'contact.error.firstnamemin,
-//            //'maxMessage' => 'contact.error.firstnamemax'
-//        )))))
-//        ->add('lastname', TextType::class, array('constraints' => array(new NotBlank(array(//'message' => 'contact.error.lastname'
-//        ))
-//        ,new Length(array('min' => 3,
-//                'max' => 10,
-//                //'minMessage' => 'contact.error.lastnamemin',
-//                //'maxMessage' => 'contact.error.lastnamemax'
-//            )))))
-//        ->add('email', TextType::class,  array('constraints' => array(new Assert\Email(array('checkMX' => true)),
-//            new NotBlank(),)))
-////        ->add('email', EmailType::class, array('constraints' => array(new Assert\Email(array(//'message' => 'contact.error.email',
-//        //          											'checkMX' => true)))))
-//        /*
-//            ->add('object', ChoiceType::class, array('choices' => array('' => '','Autre' => "Autre",'Bug' => "Bug", 'Demande' => "Demande"))
-//                             , array('constraints' => array(new NotBlank(array(//'message' => 'contact.error.lastname'
-//        )))))
-//        */
-//        ->add('object', ChoiceType::class, array('choices' => array('' => '','Autre' => "Autre",'Bug' => "Bug", 'Demande' => "Demande")),
-//            array('constraints' => array(new Length(array('min' => 3)))))
-//        ->add('message', TextareaType::class, array('constraints' => array(new NotBlank(array(//'message' => 'contact.error.messagenotblank'
-//        ))
-//        ,new Length(array('min' => 8,
-//                'max' => 10,
-//                // 'minMessage' => 'contact.error.messagemin',
-//                // 'maxMessage' => 'contact.error.messagemax'
-//            )))))
-//
-
-
-
-//        $form = $this->createForm('EurotradeBundle\Form\contactType');
-//        $form->handleRequest($request);
-//        $table['form'] = $form->createView();
-//        $send=false;
-//        $table['send'] = $send;
-//        if ($form->isSubmitted() && $form->isValid())
-//        {
-//            $subject = $form->get('subject')->getData();
-//            $from = $form->get('from')->getData();
-//            $body = $form->get('body')->getData();
-//            $this->sendMail($subject,$from,$body);
-//            // permet de savoir si le questionnaire a été envoyé
-//            $send=true;
-//            $table['send'] = $send;
-//            // on efface le questionnaire et on en créé un nouveau pour qu'à l'envoi les champs soient reset
-//            unset($form);
-//            $form = $this->createForm('HarasBundle\Form\contactType', $page);
-//            $table['form'] = $form->createView();
-//            return $this->render('@Haras/contact.html.twig', $table);
-//        }
-//        return $this->render('@Haras/contact.html.twig', $table);
-//    }
-//
-//    else if ($name == 'login'){
-//        return $this->redirectToRoute('fos_user_security_login');
-//    }
-//
-//        // renvoi par défaut si non template et non contact
-//        return $this->render('HarasBundle::'.$name.'.html.twig', $table);
-//    }
-//
-//    // envoi de mail de la page contact
-//    public function sendMail($subject, $from, $body)
+//    public function contactAction(Request $request)
 //    {
-//        $message = \Swift_Message::newInstance()
-//            ->setSubject($subject)
-//            ->setFrom($from)
-//            ->setTo('michael.combescot@gmail.com')
-//            ->setBody($body)
-//        ;
-//        $this->get('mailer')->send($message);
+//        // Create the form according to the FormType created previously.
+//        // And give the proper parameters
+//        $form = $this->createForm('EurotradeBundle\Form\contactType',null,array(
+//            // To set the action use $this->generateUrl('route_identifier')
+//            'action' => $this->generateUrl('eurotrade_contact'),
+//            'method' => 'POST'
+//        ));
+//
+//        if ($request->isMethod('POST')) {
+//            // Refill the fields in case the form is not valid.
+//            $form->handleRequest($request);
+//
+//            if($form->isValid()){
+//                // Send mail
+//                if($this->sendEmail($form->getData())){
+//
+//                    // Everything OK, redirect to wherever you want ! :
+//
+//                    return $this->redirectToRoute('eurotrade_contact');
+//                }else{
+//                    // An error ocurred, handle
+//                    var_dump("Errooooor :(");
+//                }
+//            }
+//        }
+//
+//        return $this->render('@Eurotrade/Default/contact.html.twig', array(
+//            'form' => $form->createView()
+//        ));
 //    }
-    }
+//
+//    private function sendEmail($data){
+//        $myappContactMail = 'testswift@laposte.net';
+//        $myappContactPassword = 'Phrasedepasse1';
+//
+//        // In this case we'll use the ZOHO mail services.
+//        // If your service is another, then read the following article to know which smpt code to use and which port
+//        // http://ourcodeworld.com/articles/read/14/swiftmailer-send-mails-from-php-easily-and-effortlessly
+//        $transport = \Swift_SmtpTransport::newInstance('smtp.zoho.com', 465,'ssl')
+//            ->setUsername($myappContactMail)
+//            ->setPassword($myappContactPassword);
+//
+//        $mailer = \Swift_Mailer::newInstance($transport);
+//
+//        $message = \Swift_Message::newInstance("Our Code World Contact Form ". $data["subject"])
+//            ->setFrom(array($myappContactMail => "Message by ".$data["name"]))
+//            ->setTo(array(
+//                $myappContactMail => $myappContactMail
+//            ))
+//            ->setBody($data["message"]."<br>ContactMail :".$data["email"]);
+//
+//        return $mailer->send($message);
+//    }
+//
+//
+
+
+
+
+
+//    public function sendAction(Request $request)
+//    {
+//        $from = $this->getParameter('mailer_user');
+//// Instanciation des variables name, firstname, mail, sujet, msg pour récupérer la data
+//        $name = $request->request->get('nom');
+//        $firstname = $request->request->get('prenom');
+//        $email = $request->request->get('email');
+//        $sujet = $request->request->get('Sujet');
+//        $msg = $request->request->get('msg');
+//// Instanciation d'un nouveau message vers l'administrateur avec la prise en compte des variables
+//        $message = \Swift_Message::newInstance()
+//            ->setSubject('Contact Chouettes')
+//            ->setFrom(array($from => 'ChouettesHiboux'))
+//            ->setTo($from)
+//            ->setBody(
+//                $this->renderView(
+//                    '@Chouettes/user/mail.html.twig',
+//                    array(
+//                        'nom' => $name,
+//                        'prenom' => $firstname,
+//                        'mail' => $mail,
+//                        'sujet' => $sujet,
+//                        'message' => $msg
+//                    )
+//                ),
+//                'text/html'
+//            );
+//
+//// Instanciation d'un nouveau message vers l'utilisateur avec la prise en compte des variables
+//        $message2 = \Swift_Message::newInstance()
+//            ->setSubject('Copie Contact Chouettes')
+//            ->setFrom(array($from => 'ChouettesHiboux'))
+//            ->setTo($mail)
+//            ->setBody(
+//                $this->renderView(
+//                    '@Chouettes/user/mail2.html.twig',
+//                    array(
+//                        'nom' => $name,
+//                        'prenom' => $firstname,
+//                        'mail' => $mail,
+//                        'sujet' => $sujet,
+//                        'message' => $msg
+//                    )
+//                ),
+//                'text/html'
+//            );
+//        $this->get('mailer')->send($message);
+//        $this->get('mailer')->send($message2);
+//// Ajout message sur page d'accueil pour informé de l'envoi du mail
+//        $this->addFlash(
+//            'notice',
+//            'Votre message a bien été envoyé'
+//        );
+//        return $this->redirectToRoute('chouettes_homepage');
+//
+//    }
+
 
     public function quisommesAction()
     {

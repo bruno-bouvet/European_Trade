@@ -2,15 +2,16 @@
 
 {% block body %}
     {% include 'EurotradeBundle:Default:header.html.twig' %}
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Bienvenue chez European Trade</div>
-                <div class="intro-heading"></div>
-                <a href="#services" class="page-scroll btn btn-xl">Decouvrez nos services</a>
-            </div>
-        </div>
-    </header>
+    {% include '@Eurotrade/Default/includes/slider.html.twig' %}
+    {#<header>#}
+        {#<div class="container">#}
+            {#<div class="intro-text">#}
+                {#<div class="intro-lead-in">Bienvenue chez European Trade</div>#}
+                {#<div class="intro-heading"></div>#}
+                {#<a href="#services" class="page-scroll btn btn-xl">Decouvrez nos services</a>#}
+            {#</div>#}
+        {#</div>#}
+    {#</header>#}
 
     <!-- Services Section -->
     <section id="services">
@@ -22,14 +23,24 @@
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">E-Commerce</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="{{ asset ('bundles/eurotrade/images/portfolio/dreams-preview.png') }}" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Round Icons</h4>
+                        <p class="text-muted">Graphic Design</p>
+                    </div>
                 </div>
+
+
+
+
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
