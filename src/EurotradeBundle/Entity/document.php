@@ -9,7 +9,83 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class document
 {
+    public function __toString()
+    {
+        return $this->url;
+    }
 
+    /**
+     * @Assert\Image(
+     *     maxSize = '1k',
+     *     mimeTypes = {"image/*"},
+     *     maxSizeMessage = "The maxmimum allowed file size is 1MB.",
+     *     mimeTypesMessage = "Please upload a valid Image.")
+     */
+    public $doc;
+
+    protected function getUploadDir()
+    {
+        return 'uploads/images';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->url ? null : $this->getUploadDir().'/'.$this->url;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->url ? null : $this->getUploadRootDir().'/'.$this->url;
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->doc) {
+// "uniquid()" permet de créer une id de manière aléatoire
+// Récupère l'extension du fichier
+            $this->url = uniqid().'.'.$this->doc->guessExtension();
+        }
+    }
+
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->doc) {
+            return;
+        }
+// If there is an error when moving the file, an exception will
+// be automatically thrown by move(). This will properly prevent
+// the entity from being persisted to the database on error
+        $this->doc->move($this->getUploadRootDir(), $this->url);
+
+        unset($this->doc);
+    }
+
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($doc = $this->getAbsolutePath()) {
+            unlink($doc);
+        }
+    }
+
+
+/////// GENERATED CODE ////////////////////
 
     /**
      * @var integer

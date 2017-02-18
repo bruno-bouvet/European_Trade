@@ -22,7 +22,7 @@ class documentController extends Controller
 
         $documents = $em->getRepository('EurotradeBundle:document')->findAll();
 
-        return $this->render('document/index.html.twig', array(
+        return $this->render('@Eurotrade/document/index.html.twig', array(
             'documents' => $documents,
         ));
     }
@@ -45,7 +45,7 @@ class documentController extends Controller
             return $this->redirectToRoute('document_show', array('id' => $document->getId()));
         }
 
-        return $this->render('document/new.html.twig', array(
+        return $this->render('@Eurotrade/document/new.html.twig', array(
             'document' => $document,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class documentController extends Controller
     {
         $deleteForm = $this->createDeleteForm($document);
 
-        return $this->render('document/show.html.twig', array(
+        return $this->render('@Eurotrade/document/show.html.twig', array(
             'document' => $document,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class documentController extends Controller
             return $this->redirectToRoute('document_edit', array('id' => $document->getId()));
         }
 
-        return $this->render('document/edit.html.twig', array(
+        return $this->render('@Eurotrade/document/edit.html.twig', array(
             'document' => $document,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

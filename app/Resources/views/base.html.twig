@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>{% block title %}European Trade{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/eurotrade/images/favicon_European-trade.png') }}" />
 
         {% block stylesheets %}
 
@@ -20,6 +20,7 @@
 
         <!-- Appel CSS personnalisé -->
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/eurotrade/css/home.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/eurotrade/css/slider.css') }}"/>
 
         {% endblock %}
     </head>
@@ -28,6 +29,7 @@
         {% block javascripts %}
             <script src= "{{ asset('bundles/eurotrade/js/jquery.js') }}"></script>
             <script src= "{{ asset('bundles/eurotrade/js/teachreo.js') }}"></script>
+            <script src= "{{ asset('bundles/eurotrade/js/slider.js') }}"></script>
 
             <!-- Latest compiled and minified JavaScript -->
             {#<script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>#}

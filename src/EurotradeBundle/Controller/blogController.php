@@ -22,7 +22,7 @@ class blogController extends Controller
 
         $blogs = $em->getRepository('EurotradeBundle:blog')->findAll();
 
-        return $this->render('blog/index.html.twig', array(
+        return $this->render('@Eurotrade/blog/index.html.twig', array(
             'blogs' => $blogs,
         ));
     }
@@ -45,7 +45,7 @@ class blogController extends Controller
             return $this->redirectToRoute('blog_show', array('id' => $blog->getId()));
         }
 
-        return $this->render('blog/new.html.twig', array(
+        return $this->render('@Eurotrade/blog/new.html.twig', array(
             'blog' => $blog,
             'form' => $form->createView(),
         ));
@@ -59,7 +59,7 @@ class blogController extends Controller
     {
         $deleteForm = $this->createDeleteForm($blog);
 
-        return $this->render('blog/show.html.twig', array(
+        return $this->render('@Eurotrade/blog/show.html.twig', array(
             'blog' => $blog,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,7 +81,7 @@ class blogController extends Controller
             return $this->redirectToRoute('blog_edit', array('id' => $blog->getId()));
         }
 
-        return $this->render('blog/edit.html.twig', array(
+        return $this->render('@Eurotrade/blog/edit.html.twig', array(
             'blog' => $blog,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
