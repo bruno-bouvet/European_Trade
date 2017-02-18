@@ -4,6 +4,10 @@ eurotrade_homepage:
     path:     /
     defaults: { _controller: EurotradeBundle:Default:index }
 
+eurotrade_nosmetiers:
+    path:     /nos_métiers
+    defaults: { _controller: EurotradeBundle:Default:nosMetiers }
+
 eurotrade_contact:
     path:     /contact
     defaults: { _controller: EurotradeBundle:Default:contact }
@@ -11,6 +15,10 @@ eurotrade_contact:
 eurotrade_quisommes:
     path:     /qui_sommes_nous
     defaults: { _controller: EurotradeBundle:Default:quisommes }
+
+eurotrade_rejoigneznous:
+    path:     /rejoignez-nous
+    defaults: { _controller: EurotradeBundle:Default:rejoigneznous }
 
 eurotrade_blog:
     path:     /blog

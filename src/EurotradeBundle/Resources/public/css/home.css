@@ -588,6 +588,7 @@ section#who {
     background-repeat: no-repeat;
     color: #ffffff;
     margin-top: 20px;
+    max-height: 600px;
 
 
 }
@@ -602,6 +603,61 @@ section#who #presentation {
     font-size: 20px;
     text-align: -webkit-left;
 }
+
+
+/*/////////////////////////////////////////*/
+/*/////////////////REJOIGNEZ-NOUS/////////*/
+/*////////////////////////////////////////*/
+
+/*section#join {*/
+
+    /*!*background-image: url("../images/BUREAUX4.jpg");*!*/
+    /*background-color: #337AB7;*/
+    /*background-position: 70%;*/
+    /*background-repeat: no-repeat;*/
+    /*color: #ffffff;*/
+    /*margin-top: 20px;*/
+    /*max-height: 800px;*/
+
+
+
+/*}*/
+
+/*section#force {*/
+
+    /*!*background-image: url("../images/BUREAUX4.jpg");*!*/
+    /*background-color: #337AB7;*/
+    /*background-position: 70%;*/
+    /*background-repeat: no-repeat;*/
+    /*color: #ffffff;*/
+    /*margin-top: 20px;*/
+    /*max-height: 800px;*/
+
+
+
+/*}*/
+
+/*section#join .left {*/
+    /*padding-right: 10%;*/
+    /*padding-left: 10%;*/
+/*}*/
+
+/*section#join .right {*/
+    /*padding-left: 10%;*/
+    /*padding-right: 10%;*/
+/*}*/
+/*section#join .section-heading {*/
+    /*color: white;*/
+/*}*/
+/*section#join .form-group {*/
+    /*margin-bottom: 25px;*/
+/*}*/
+
+/*section#join #presentation {*/
+    /*font-size: 20px;*/
+    /*text-align: -webkit-left;*/
+    /*margin-left: 15px;*/
+/*}*/
 
 /*/////////////////////////////////////////*/
 /*/////////////////CONTACT/////////////////*/

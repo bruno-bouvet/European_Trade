@@ -181,6 +181,14 @@ class DefaultController extends Controller
 //    }
 
 
+    public function nosMetiersAction()
+    {
+        return $this->render('EurotradeBundle:Default:nosmétiers.html.twig');
+    }
+    public function rejoignezNousAction()
+    {
+        return $this->render('EurotradeBundle:Default:rejoigneznous.html.twig');
+    }
     public function quisommesAction()
     {
         return $this->render('EurotradeBundle:Default:quisommesnous.html.twig');
