@@ -84,6 +84,7 @@ body {
 }
 .text-muted {
     color: #777777;
+    padding-top: inherit;
 }
 .text-primary {
     color: #0A7ABC;
@@ -380,11 +381,16 @@ header .intro-text .intro-heading {
 
 
 section {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 section h2.section-heading {
     font-size: 40px;
     margin-top: 0;
+    margin-bottom: 15px;
+}
+section h2#section-presentation {
+    font-size: 40px;
+    margin-top: 100px;
     margin-bottom: 15px;
 }
 section h3.section-subheading {
@@ -397,7 +403,7 @@ section h3.section-subheading {
 }
 @media (min-width: 768px) {
     section {
-        padding: 150px 0;
+        /*padding: 150px 0;*/
     }
 }
 .service-heading {
@@ -576,10 +582,13 @@ section h3.section-subheading {
 
 section#who {
 
+    /*background-image: url("../images/BUREAUX4.jpg");*/
     background-color: #337AB7;
-    background-position: center;
+    background-position: 70%;
     background-repeat: no-repeat;
     color: #ffffff;
+    margin-top: 20px;
+
 
 }
 section#who .section-heading {
@@ -666,6 +675,11 @@ section#contact .text-danger {
 footer {
     padding: 25px 0;
     text-align: center;
+    -moz-box-shadow: 0px -1px 1px 0px #9b9b9b;
+    -webkit-box-shadow: 0px -1px 1px 0px #9b9b9b;
+    -o-box-shadow: 0px -1px 1px 0px #9b9b9b;
+    box-shadow: 0px -1px 1px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=90, Strength=1);
 }
 footer span.copyright {
     line-height: 40px;
@@ -713,8 +727,6 @@ ul.social-buttons li a:active {
 .btn:active:focus {
     outline: none;
 }
-
-
 
 
 /*/////////////////////////////////////////*/
@@ -812,4 +824,99 @@ img::-moz-selection {
 }
 body {
     webkit-tap-highlight-color: #fed136;
+}
+
+
+
+/*/////////////////////////////////////////*/
+/*///////////////CTA - home///////////////*/
+/*////////////////////////////////////////*/
+
+
+section#ctahome {
+
+    background-color: #337AB7;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    padding:100px 0 100px 0;
+
+
+}
+
+section#ctahome .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+     border-color: #FFFFFF;
+    margin-top: 1em;
+    padding: 15px;
+    width: 100%;
+    font-size: 18px;
+}
+
+.bs-calltoaction{
+    position: relative;
+    width:auto;
+    padding: 15px 25px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.bs-calltoaction > .row{
+    display:table;
+    width: calc(100% + 30px);
+}
+
+
+.cta-contents{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.cta-title{
+    margin: 0 auto 15px;
+    padding: 0;
+}
+
+.cta-desc{
+    padding: 0;
+}
+
+.cta-desc p:last-child{
+    margin-bottom: 0;
+}
+
+.cta-button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 991px) {
+    .bs-calltoaction > .row {
+        display: block;
+        width: auto;
+    }
+
+    .bs-calltoaction > .row > [class^="col-"],
+    .bs-calltoaction > .row > [class*=" col-"] {
+        float: none;
+        display: block;
+        vertical-align: middle;
+        position: relative;
+    }
+
+    .cta-contents {
+        text-align: center;
+    }
+
+    .bs-calltoaction.bs-calltoaction-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #ffffff;
+    }
+
+    .bs-calltoaction.bs-calltoaction-success .cta-button .btn {
+        border-color: #FFFFFF;
+    }
 }
