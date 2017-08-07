@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+{% block html_tag %}
+<html lang="{{ app.request.locale }}">
+
+{% endblock html_tag %}    <head>
+    <meta charset="{{ _charset }}" />
+        <title>{% block title %European Trade{% endblock %}</title>
+
+    {% block head_style %}{% endblock %}
+    {% block head_script %}{% endblock %}
+    {#{% block stylesheets %}{% endblock %}#}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>

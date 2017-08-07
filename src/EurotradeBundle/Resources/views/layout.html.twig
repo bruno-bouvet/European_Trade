@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+    {stylesheets
+    '@E'
+    filter='cssrewrite' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+{% endblock %}
